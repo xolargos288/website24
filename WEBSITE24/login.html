@@ -10,8 +10,6 @@
 
 
 
-
-
   <style>
     form {
         width: 300px;
@@ -325,7 +323,6 @@ body {
     <a href="./index.html#home" class="nav-link">Home</a>
     <a href="./service.html#service" class="nav-link">Service</a>
     <a href="./about.html#about" class="nav-link">About</a>
-
   </div>
   <script>
   var coll = document.getElementsByClassName("collapsible");                                 /*collapsible pragma*/
@@ -376,6 +373,56 @@ body {
 
 
 
+<!-- <php?
+
+// PHP κώδικας για σύνδεση και αποθήκευση δεδομένων
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Σύνδεση στη βάση δεδομένων
+    $conn = new mysqli('localhost', 'username', 'password', 'database');
+
+    // Έλεγχος σύνδεσης
+    if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+    }
+
+    // Λήψη δεδομένων από τη φόρμα
+    $firstname = $_POST['firstname'];
+    $lastname = $_POST['lastname'];
+    $username = $_POST['username'];
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Κρυπτογράφηση κωδικού
+    $email = $_POST['email'];
+    $simplepush_key = $_POST['simplepush_key'];
+
+    // Έλεγχος αν το username ή το email ή το simplepush_key υπάρχει ήδη
+    $stmt = $conn->prepare("SELECT id FROM users WHERE username=? OR email=? OR simplepush_key=?");
+    $stmt->bind_param("sss", $username, $email, $simplepush_key);
+    $stmt->execute();
+    $stmt->store_result();
+
+    if ($stmt->num_rows > 0) {
+        echo "<p>Το username, το email ή το simplepush key υπάρχει ήδη!</p>";
+    } else {
+        // Εισαγωγή δεδομένων στη βάση
+        $stmt = $conn->prepare("INSERT INTO users (firstname, lastname, username, password, email, simplepush_key) VALUES (?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("ssssss", $firstname, $lastname, $username, $password, $email, $simplepush_key);
+
+        if ($stmt->execute()) {
+            echo "<p>Εγγραφή επιτυχής!</p>";
+        } else {
+            echo "<p>Σφάλμα κατά την εγγραφή: " . $stmt->error . "</p>";
+        }
+    }
+
+    // Κλείσιμο σύνδεσης
+    $stmt->close();
+    $conn->close();
+}
+    
+
+
+?>  
+
+-->
 
 
 
@@ -383,7 +430,7 @@ body {
 
 
 
-  <h2>Sign Up</h2>
+  <h2>Login Form</h2>
 
   <form action="/action_page.php" method="post">
     <div class="imgcontainer">
@@ -394,58 +441,47 @@ body {
     <!-- //width="500" height="333" -->
   
   </div>
-
   <div class="container">
-      <!-- Φόρμα εγγραφής -->
-      <form action="register.php" method="post">
-        <label for="firstname">Όνομα:</label>
-        <input type="text" id="firstname" name="firstname" required>
-
-        <label for="lastname">Επώνυμο:</label>
-        <input type="text" id="lastname" name="lastname" required>
-
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-
-        <label for="password">Κωδικός:</label>
-        <input type="password" id="password" name="password" required>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-
-        <label for="simplepush_key">SimplePush Key:</label>
-        <input type="text" id="simplepush_key" name="simplepush_key">
-
+   
+        <!-- Φόρμα εγγραφής -->
+        <form action="register.php" method="post">
+          <label for="firstname">Όνομα:</label>
+          <input type="text" id="firstname" name="firstname" required>
+  
+          <label for="lastname">Επώνυμο:</label>
+          <input type="text" id="lastname" name="lastname" required>
+  
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required>
+  
+          <label for="password">Κωδικός:</label>
+          <input type="password" id="password" name="password" required>
+  
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required>
+  
+  
       
-      <input type="submit" value="Εγγραφή">
-  </form>
-
-        
     </form>
-    <br>
-    <br>
-    <br>
-    <br>
-    
-      
+  </form>
         
-    <button type="submit">Sign Up</button>
+    <button type="submit">Login</button>
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me 
     </label>
   </div>
-  <br>
-  <br> 
-  <br>
-  <a href="./login.html#about" class="nav-link" text-align : center>or Login </a>
-  <br>
-  <br>
-  <br>
+
+
   <div class="container" >                                                          
     <button type="button" class="cancelbtn">Cancel</button>
     <span class="psw">Forgot <a href="#">password?</a></span>                                        
   </div>
-</form>
+<!-- 
+  <div class="container" >                                                          
+    <button type="button" class="cancelbtn" text-align: center;>Cancel</button>
+    <span class="psw">Sign Up <a href="#">password?</a></span>                                        
+  </div>
+</form> -->
                                                                                            
                      
 
@@ -460,5 +496,3 @@ body {
 
 
   </html>
-
-
