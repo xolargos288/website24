@@ -1,6 +1,17 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
- 
+
+
+
+<?php
+session_start();
+?>
+
+
+
 <head>
 
   <meta charset="UTF-8" />
@@ -171,7 +182,7 @@
         <a href="./index.html#home" class="nav-link">Home</a>
         <a href="./service.html#service" class="nav-link">Service</a>
         <a href="./about.html#about" class="nav-link">About</a>
-        <a href="./profile.html#about" class="nav-link">My Profile</a>
+        <a href="./profile.html" class="nav-link">My Profile</a>
       </div>
       <script>
       var coll = document.getElementsByClassName("collapsible");                                 /*collapsible pragma*/
@@ -227,27 +238,34 @@
     <br>
 
 
-    <h2 style="text-align:center">User Profile </h2>
+      
+      <!-- <?php
+      echo file_get_contents("test.txt");
+      ?> -->
+      
+
+
+ 
+    <h2 style="text-align:center">User Profile</h2>
 
     <div class="card">
-      <h1>Andreoulis</h1>
-      <p class="title">User</p>
-      <p>Harvard University</p>
-<!-- EDW THA PREPEI NA MPAINOUN TA STOIXEIA POU EXEI KANEI LOGIN O USER -->
-      <!-- links poy mporoume na valoume sthn karta -->
-
-
-      <div style="margin: 24px 0;">
-        <a href="#"><i class="fa fa-dribbble"></i></a> 
-        <a href="#"><i class="fa fa-twitter"></i></a>  
-        <a href="#"><i class="fa fa-linkedin"></i></a>  
-        <a href="#"><i class="fa fa-facebook"></i></a> 
-      </div>
-      <p><button>Contact</button></p>
+        <!-- Displaying the user's name -->
+        <h1><?php echo htmlspecialchars($_SESSION['firstname'] . ' ' . $_SESSION['lastname']); ?></h1>
+        <p class="title">Username: <?php echo htmlspecialchars($_SESSION['username']); ?></p>
+        <p>Email: <?php echo htmlspecialchars($_SESSION['email']); ?></p>
+        <p>SimplePush Key: <?php echo htmlspecialchars($_SESSION['simplepush_key']); ?></p>
+    
+        <!-- Social media icons -->
+        <div style="margin: 24px 0;">
+            <a href="#"><i class="fa fa-dribbble"></i></a> 
+            <a href="#"><i class="fa fa-twitter"></i></a>  
+            <a href="#"><i class="fa fa-linkedin"></i></a>  
+            <a href="#"><i class="fa fa-facebook"></i></a> 
+        </div>
+    
+        <!-- Contact button -->
+        <p><button>Contact</button></p>
     </div>
- 
- 
- 
  
  
  
